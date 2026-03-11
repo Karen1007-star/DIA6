@@ -56,8 +56,13 @@
 const p1=document.getElementById("p1")
 const boton1=document.getElementById("btn1")
 
-boton1.addEventListener("click",()=>{
-  p1.textContent="cambio de texto"
+boton1.addEventListener("click",(e)=>{
+  e.target.textContent="cambio de texto"
+  // e.target.innerHTML = "<b>Negrita</b>";
+  // e.target.style.color = "red";
+  // e.target.style.backgroundColor = "yellow";
+  // e.target.style.fontSize = "20px";
+
 })
 
 const box=document.getElementById("box")
