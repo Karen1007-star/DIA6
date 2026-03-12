@@ -34,10 +34,30 @@ function reverseString2(str){
 function isAnagram(str1, str2){
     let word1= str1.split("")
     let word2= str2.split("")
-    if(word1.length == word2.length){
-        let pal = word1.sort((a,b)=>a-b);
-        let pal2 = word2.sort((a,b)=>a-b);
-        return (pal==pal2)
+    if(str1.length == str2.length){
+        let pal = word1.sort();
+        let pal2 = word2.sort();
+        let i=0;
+        return pal.forEach(element => {
+           if(element == pal2[i]){
+            i++
+           }else{
+            return false
+           }   
+        }) ? true : false
+    }else{
+        return false
     }
-    return false
+}
+
+let arrayn =[];
+function flattenArray(arr){
+    for(let i=0; i<arr.length;i++){
+        if(Array.isArray(arr[i])){
+            flattenArray(arr[i])
+        }else{
+            arrayn.push(arr[i])
+        }
+    }
+    console.log(arr)
 }
