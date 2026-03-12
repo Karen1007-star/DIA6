@@ -66,3 +66,57 @@ function promedio(num){
     return suma/num.length;
 } 
 // Flatten simple [1,[2,3]] → [1,2,3]
+
+function aplanador(arr){
+
+}
+
+// Ejercicio A
+// Array:
+// [2,4,6,8]
+// Pregunta:
+// ¿Cómo verificarías si todos los números son pares?
+
+function par(n){
+    for(let i=0; i<n.length; i++){
+        if(n[i]%2!=0){
+            return false
+        } 
+    }
+    return true
+}
+
+// Ejercicio B
+// String:
+// "programar"
+// Pregunta:
+// ¿Cómo contarías cuántas veces aparece la letra "r"?
+function contadorR(str){
+    let obj={}
+    for(let letra of str){
+        if(letra === "r" || letra === "R"){
+            if(obj["r"]){
+                obj["r"]++
+            }else{
+                obj["r"] = 1
+            }
+        }
+    }
+    return obj
+}
+
+// Ejercicio C
+// Array:
+// [10,5,8,12,3]
+// Pregunta:
+// ¿Cómo encontrarías el número menor?
+
+function menorNum(arr){
+    let menor = arr[0]
+    for(let i=0; i<arr.length; i++){
+        if(arr[i]<menor){
+            menor=arr[i]
+        }
+    }
+    return menor
+}
