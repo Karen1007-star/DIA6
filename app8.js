@@ -55,11 +55,11 @@ function findMax(arr){
 
 //6//
 function longestWord(cadena){
-    let palabra = cadena.split(" ")
-    let palabraLarga=palabra[0].length
-    for(let letras of palabra){
-        if(palabraLarga<letras.length){
-            palabraLarga = letras.length
+    let palabras = cadena.split(" ")
+    let palabraLarga=palabra[0]
+    for(let letras of palabras){
+        if(palabraLarga.length<letras.length){
+            palabraLarga = letras
         }
     }
     return palabraLarga
@@ -76,10 +76,37 @@ function wordCount(oracion){
             objCantidad[pal]++
         }
     }
-    objCantidad
+    return objCantidad
 }
 
 //8//
-function rotate(arr){
-    
+function rotate(arr,n){
+    let arrNuevo = []
+    for(let i=0; i<arr.length; i++){
+        if(arrNuevo[]==""){
+
+        }else{
+            arrNuevo[i+n].push(arr[i])
+        }    
+            
+    }
+}
+
+//9//
+function isAnagram(cadena1, cadena2){
+    if(cadena1.length==cadena2.length){
+        cadena1.split("").forEach(element => {
+            element.includes(cadena2)
+        });
+        return true
+    }
+    return false
+}
+
+//10//
+function createCounter(){
+    let count=0;
+    return function(){
+        return count++
+    }
 }
