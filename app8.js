@@ -83,11 +83,6 @@ function wordCount(oracion){
 function rotate(arr,n){
     let arrNuevo = []
     for(let i=0; i<arr.length; i++){
-        if(arrNuevo[]==""){
-
-        }else{
-            arrNuevo[i+n].push(arr[i])
-        }    
             
     }
 }
