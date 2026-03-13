@@ -120,3 +120,57 @@ function menorNum(arr){
     }
     return menor
 }
+
+// contar letras
+function countLetters(stringLarge){
+    let objLet={}
+    for(let letter of stringLarge){
+        if(!objLet[letter]){
+            objLet[letter]=1
+        }else{
+            objLet[letter]++
+        }
+    }
+    return objLet
+}
+
+//Contar números
+function countNumbers(num){
+    let objNum={}
+    for(let n of num){
+        if(!objNum[n]){
+            objNum[n]=1
+        }else{
+            objNum[n]++
+        }
+    }
+    return objNum
+}
+
+// Contar palabras
+function countString(words){
+    let objWd = {}
+    for(let wor of words){
+        if(!objWd[wor]){
+            objWd[wor]=1
+        }else{
+            objWd[wor]++
+        }
+    }
+    return objWd
+}
+
+// consonantes
+function consonantes(palabras){
+    let objCon={}
+    for(let letra of palabras){
+        if(!letra.match(/[aeiou]/)){
+            if(!objCon[letra]){
+                objCon[letra]=1
+            }else{
+                objCon[letra]++
+            }
+        }
+    }
+    return objCon
+}
