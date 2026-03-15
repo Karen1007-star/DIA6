@@ -129,3 +129,13 @@ function fibonacci(n){
     }
     return Arrn
 }
+
+//revertir una palabra
+function rever(str){
+    let letras = str.split("")
+    let arrN=[]
+    for(let i=0; i<letras.length; i++){
+        arrN.push(letras[letras.length-(i+1)])
+    }
+    return arrN.join("")
+}
