@@ -144,6 +144,7 @@ for(let i of tiempos){
 }
 
 
+const { log } = require("console");
 ///////////79////////777
 let fs = require("fs")
     fs.readFile((error,data)=>{
@@ -153,3 +154,138 @@ let fs = require("fs")
             console.log(error);
         }
     })
+    fetch("usuarios")
+    .then(res=>res.json())
+    .then(respuesta=>console.log(respuesta))
+
+    ///// ⏱ Ejercicio 1 – Serie (uno después del otro)
+
+function esperar(ms) {
+  return new Promise(res => setTimeout(res, ms));
+}
+async function ejecutarSerie() {
+  for (let t of tiempos) {
+    await esperar(t);   // espera cada uno
+    console.log(t);
+  }
+}
+
+ejecutarSerie();
+
+Promise.all(tiempos.map((t)=>{
+   console.log(t);
+}))
+
+/////////////////////////////////////////////////////77
+
+const numeros = [1,2,3,4,5]
+
+function delay(num){
+    return new Promise((res,rej)=>setTimeout(()=>res(num*2),1000))
+}
+async function resultadoNum() {
+        for(let i of numeros){
+            const res = await delay(i);
+            console.log(res);
+        }    
+}
+resultadoNum()
+
+
+////////////////////////////////////////////////////////////////77777777
+const tareas = [1000, 2000, 500];
+
+function tarea(ms) {
+  return new Promise(res => setTimeout(() => res(`Tarea ${ms}`), ms));
+}
+
+async function resultadoTarea(){
+    for(let i of tareas){
+        const res = await tarea(i);
+        console.log(res);
+    }
+    console.log("Fin");
+    
+}
+resultadoTarea()
+
+////////////////////////////////////////////////////////////
+const usuarios = [1, 2, 3];
+
+function fetchUsuario(id) {
+  return new Promise(res => setTimeout(() =>{
+    res({ id, nombre: "User " + id })
+  },id * 500));
+}
+
+async function fetchUsuarioResultado() {
+  const resultados = await Promise.all
+  (usuarios.map(async (id) => {
+      const user = await fetchUsuario(id);
+      return user.nombre;
+    }))
+}
+
+////////////////////////////////////////////////////
+const datos = [1, 2, 3];
+
+function proceso(n) {
+  return new Promise(res => setTimeout(() => res(n + 10), 1000));
+}
+
+async function procesoResultado() {
+    for(let i of datos){
+        let res = await proceso(i)
+        console.log(res);
+    }
+}
+procesoResultado()
+
+//////////////////////////// Ejercicio 2 – Paralelo básico
+const datos1 = [1, 2, 3];
+
+function proceso1(n) {
+  return new Promise(res => setTimeout(() => res(n * 3), 1000));
+}
+
+async function proceso1Resultados() {
+   let resultados= await Promise.all(datos1.map(async (i)=>{
+        return await proceso1(i)
+    }))
+    console.log(resultados);
+}
+proceso1Resultados()
+
+///////////////////////////////////////// Ejercicio 3 – Error clásico (map + async)
+const ids = [1, 2, 3];
+
+function fetchData(id) {
+  return new Promise(res => setTimeout(() => res(`Data ${id}`), 1000));
+}
+
+async function fetchDataResultado() {
+    Promise.all(ids.map(async (i)=>{
+        let res = await fetchData(i)
+        console.log(res)
+    }))
+}
+fetchDataResultado()
+
+//////////////////////////////////////////////////// Ejercicio 4 – Mezcla (nivel real)
+const tiempos1 = [1000, 500];
+
+function esperar1(ms) {
+  return new Promise(res => setTimeout(() => res(ms), ms));
+}
+
+async function esperar1Respuesta() {
+    for(let i of tiempos1){
+        let res = await esperar1(i)
+        console.log(res);
+    }
+
+    let respuestitas = await Promise.all(tiempos1.map(async(i)=> esperar1(i)))
+    console.log(respuestitas);
+}
+
+esperar1Respuesta()
