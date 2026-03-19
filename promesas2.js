@@ -289,3 +289,53 @@ async function esperar1Respuesta() {
 }
 
 esperar1Respuesta()
+
+
+///////////////////////////////////////////////////////777
+function contador(){
+    let count=0
+    return function(){
+        return count++
+    }
+}
+
+const con = contador()
+con()
+
+/////////////////////////////////////////////////////////////
+function esperar(ms){
+   return new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res(ms)
+        },ms*1000)
+    })
+}
+async function esperarR(ms) {
+    try {
+        let res = await esperar(ms)
+        console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
+}
+esperarR(1)
+
+
+///////////// Usa Promise.all con [1000,500,1500] para mostrar un array de resultados en consola paralelo.
+let times = [1000,500,1500]
+
+Promise.all(times.map(async(i)=>{
+    let res = await i;
+    console.log(res);
+}))
+
+/// Usa for...of + await con los mismos tiempos para mostrarlos en serie, uno tras otro.
+async function result(){
+    for(let i of times){
+        let res = await esperar(i)
+        console.log(res);
+    }
+    console.log("Serie completa");
+}
+
+result();
