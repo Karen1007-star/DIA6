@@ -170,31 +170,74 @@ function primerRepetido(arr){
 //🚀 Ronda PRO – Optimización
 // 1️⃣ Detectar duplicados (Optimizado)
 function tieneDuplicadosOpt(arr){
-    let nuevo =  new Set(arr)
-    return [...nuevo].length === arr.length ? false : true
+    return new Set(arr).size !== arr.length;
 }
 
 // 2️⃣ Primer número repetido (Optimizado)
 function primerRepetidoOpt(arr){
-    let objR={}
-    arr.map((num)=>{
-        if (!objR[num]){objR[num]=1}else{return num}    
-    })
+    let vistos = {};
+    for (let num of arr) {
+        if (vistos[num]) return num;
+        vistos[num] = true; // para marcar que el valor ya aparecio
+    }
+    return "No hay numeros repetidos";
 }
 
 // 3️⃣ Elemento único
 function elementoUnico(arr){
-
+    let freq = {};
+    for (let num of arr) {
+        freq[num] = (freq[num] || 0) + 1;
+    }
+    for (let num in freq) {
+        if (freq[num] === 1) return Number(num);
+    }
+    return "No hay";
 }
 
 //4️⃣ Intersección de arrays
 function interseccion(arr1, arr2){
-    let uno = new Set(arr1)
-    let dos = new Set(arr2)
-    return [...uno.intersection(dos)]
-}
+    let set1 = new Set(arr1);
+    return arr2.filter(x => set1.has(x));
+}       
 
 // 5️⃣ Dos números que suman target (CLÁSICO DE ENTREVISTA 🔥)
 function dosSum(arr, target){
-    
+    let arr2=[]
+    for(let i=0; i<arr.length; i++){
+        for(let j=i+1; j<arr.length; j++){
+            if(arr[i]+arr[j]==target){
+                arr2.push(i,j)
+            }
+        }
+    }
+    return arr2
+}
+//1️⃣ Optimización de búsqueda
+function primerRepetidoOptOpt(arr){
+    let objVisto={}
+    if(arr.length==0) return "Array vacio"
+    for(let i of arr){
+        if(objVisto[i]){
+           return i 
+        }
+        objVisto[i]=true
+    }
+}
+
+//2️⃣ DosSum avanzado
+function dosSumTodos(arr, target){
+    let nuevoObj={}
+    let arr2=[]
+    if(arr.length== 0) return "Array vacio"
+    if(arr.some((n)=>n<0)) return "Numero negativo"
+    let complemento
+    for(let i=0;i<arr.length; i++){
+        complemento = target - arr[i]
+        if(complemento!=undefined){
+            arr2.push(i,complemento[i])
+        }
+        nuevoObj[i] = true
+    }
+    return arr2
 }
